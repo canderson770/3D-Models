@@ -1,6 +1,6 @@
 //Maya ASCII 2016 scene
 //Name: Maya Scene 1.ma
-//Last modified: Wed, Aug 26, 2015 02:55:21 PM
+//Last modified: Wed, Aug 26, 2015 02:56:55 PM
 //Codeset: 1252
 requires maya "2016";
 requires -nodeType "mentalrayFramebuffer" -nodeType "mentalrayOptions" -nodeType "mentalrayGlobals"
@@ -74,6 +74,18 @@ createNode camera -s -n "sideShape" -p "side";
 	setAttr ".man" -type "string" "side_mask";
 	setAttr ".hc" -type "string" "viewSet -s %camera";
 	setAttr ".o" yes;
+createNode transform -n "pSphere1";
+	rename -uid "8DCD9B6B-4EF1-634D-F732-4588CE0BD98E";
+createNode mesh -n "pSphereShape1" -p "pSphere1";
+	rename -uid "5054E54D-4E8C-9710-AF37-DE9ABA21ECC0";
+	setAttr -k off ".v";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
 createNode lightLinker -s -n "lightLinker1";
 	rename -uid "6C487CCA-42C3-06B9-C9DA-2BA8BD51070C";
 	setAttr -s 2 ".lnk";
@@ -420,6 +432,8 @@ createNode script -n "sceneConfigurationScriptNode";
 	rename -uid "D4C0AB8A-49DE-1B99-C859-11807902B131";
 	setAttr ".b" -type "string" "playbackOptions -min 1 -max 120 -ast 1 -aet 200 ";
 	setAttr ".st" 6;
+createNode polySphere -n "polySphere1";
+	rename -uid "AF331C65-4DA0-2AFB-2256-B7BB978BCF34";
 select -ne :time1;
 	setAttr ".o" 1;
 	setAttr ".unw" 1;
@@ -448,6 +462,7 @@ select -ne :hardwareRenderGlobals;
 	setAttr ".btrs" 512;
 select -ne :ikSystem;
 	setAttr -s 4 ".sol";
+connectAttr "polySphere1.out" "pSphereShape1.i";
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
@@ -460,4 +475,5 @@ connectAttr ":miDefaultFramebuffer.msg" ":mentalrayItemsList.fb" -na;
 connectAttr ":miDefaultOptions.msg" ":mentalrayGlobals.opt";
 connectAttr ":miDefaultFramebuffer.msg" ":mentalrayGlobals.fb";
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
+connectAttr "pSphereShape1.iog" ":initialShadingGroup.dsm" -na;
 // End of Maya Scene 1.ma

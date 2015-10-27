@@ -1,8 +1,0 @@
-0.0s: GoZInitPhotoshop executed!
-0.0s: [RELEASE]
-0.0s: appPath = C:/Program Files/Adobe/Adobe Photoshop CC 2015/Photoshop.exe
-0.0s: 'C:/Program Files/Adobe/Adobe Photoshop CC 2015/Plug-ins/GoZ' NOT existing!
-0.0s: folder created successfully: C:/Program Files/Adobe/Adobe Photoshop CC 2015/Plug-ins/GoZ
-0.0s: Photoshop '64' bit installation case!
-0.1s: 'C:/Program Files/Adobe/Adobe Photoshop CC 2015/Plug-ins/GoZ/GoZPlugIn64.8li' created successfully (copied)
-0.1s: Installation finished successfully!
